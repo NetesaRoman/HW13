@@ -36,7 +36,7 @@ public class FileData {
         this.capacity = capacity;
     }
 
-    public void showInfo() {
+    public void printInfo() {
         System.out.println("Name: " + fileName + " Path: " + pathToFile + " Capacity: " + capacity);
     }
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileDataList {
-    List<FileData> files = new ArrayList<>();
+   private List<FileData> files = new ArrayList<>();
 
     public void addFile(FileData file) {
         files.add(file);
@@ -14,9 +14,9 @@ public class FileDataList {
         files.remove(file);
     }
 
-    public void showInfo() {
+    public void printInfo() {
         for (FileData file : files) {
-            file.showInfo();
+            file.printInfo();
         }
     }
 

@@ -1,17 +1,23 @@
 package models;
 
+import models.api.SecureException;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class FileNavigator {
-    Map<String, FileDataList> files = new HashMap<>();
+   private Map<String, FileDataList> files = new HashMap<>();
 
-    public void add(FileData file) {
-        if (files.containsKey(file.getPathToFile())) {
-            files.get(file.getPathToFile()).addFile(file);
+    public void add(String path, FileData file) throws SecureException {
+        if(!path.equals(file.getPathToFile())){
+            throw new SecureException("Указанный путь не соответствует тому пути который хранится в данных файла");
+        }
+
+        if (files.containsKey(path)) {
+            files.get(path).addFile(file);
         } else {
-            files.put(file.getPathToFile(), new FileDataList());
-            files.get(file.getPathToFile()).addFile(file);
+            files.put(path, new FileDataList());
+            files.get(path).addFile(file);
         }
     }
 
@@ -64,7 +70,7 @@ public class FileNavigator {
     public void showAll() {
 
         for (var entry : files.entrySet()) {
-            entry.getValue().showInfo();
+            entry.getValue().printInfo();
         }
 
     }
